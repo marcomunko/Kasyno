@@ -10,4 +10,5 @@ add_executable(Kasyno main.cpp
         Kasyno.h
         Gracz.cpp
         Gracz.h
+        Utils.h
 )

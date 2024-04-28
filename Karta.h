@@ -19,15 +19,4 @@ public:
     void wypisz() const { std::cout << figura << kolor; }
 };
 
-class Talia {
-private:
-    Karta karty[52];
-    short aktualnaKarta = 0;
-public:
-    Talia();
-
-    void Tasuj();
-    Karta* dajKarte();
-};
-
 #endif //KASYNO_KARTA_H
