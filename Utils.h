@@ -1,12 +1,14 @@
 #ifndef KASYNO_UTILS_H
 #define KASYNO_UTILS_H
+
 #include <string>
 #include <iostream>
 
 class Utils {
 public:
-    static int IntUżytkownika(std::string msg, bool exception = true, int rangeStart = -1, int rangeEnd = -1){
-        std::cout << msg;
+    //sprawdzenie czy string jest intem (liczbą)
+    static int IntUżytkownika(std::string wiadomość, bool oczekiwany = true, int zakresStart = -1, int zakresEnd = -1){
+        std::cout << wiadomość;
         int n;
         std::cin >> n;
 
@@ -14,37 +16,38 @@ public:
             std::cin.clear();
             std::cin.ignore(256, '\n');
 
-            if(exception)
+            if(oczekiwany)
                 throw std::exception();
             else
-                return IntUżytkownika(msg, exception, rangeStart, rangeEnd);
+                return IntUżytkownika(wiadomość, oczekiwany, zakresStart, zakresEnd);
         }
+        std::cin.ignore();
 
-        if(rangeStart != -1 && rangeEnd != -1 && (n < rangeStart || n > rangeEnd)){
+        if(zakresStart != -1 && zakresEnd != -1 && (n < zakresStart || n > zakresEnd)){
             std::cout << "Podana liczba nie mieści się w zakresie" << std::endl;
-            return IntUżytkownika(msg, exception, rangeStart, rangeEnd);
+            return IntUżytkownika(wiadomość, oczekiwany, zakresStart, zakresEnd);
         }
 
         return n;
     }
-
-    static std::string stringUżytkownika(std::string msg, int maxL = -1){
-        std::cout << msg;
+    // sprawdzanie poprawności stringa
+    static std::string stringUżytkownika(std::string wiadomość, int maxL = -1){
+        std::cout << wiadomość;
         std::string s;
-        std::cin.ignore();
         getline(std::cin, s);
 
         if(maxL != -1 && s.length() > maxL){
             std::cout << "Podany tekst jest za długi\n";
-            return stringUżytkownika(msg, maxL);
+            return stringUżytkownika(wiadomość, maxL);
         }
 
         if(s.length() < 1){
             std::cout << "Tekst musi istnieć lol\n";
-            return stringUżytkownika(msg, maxL);
+            return stringUżytkownika(wiadomość, maxL);
         }
 
         return s;
     }
+
 };
 #endif //KASYNO_UTILS_H

@@ -10,9 +10,12 @@ class Kasyno {
 private:
     bool graTrwa;
     Karta karty[52];
-    Gracz *gracze;
+    Gracz **gracze = nullptr;
     int liczbaGraczy;
     short aktualnaKarta;
+    void DodajBota(short liczbaBota = 0);
+    template<typename T, typename ...args>
+    void DodajGracza(args &&... arg);
 public:
     Kasyno();
     ~Kasyno();
